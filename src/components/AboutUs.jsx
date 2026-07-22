@@ -15,7 +15,7 @@ const AboutUs = () => {
             CELEBRATING SHOULD NOT FEEL LIKE <span className="highlight-text" style={{color: '#000000'}}>STRESS.</span>
           </h1>
           
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem' }}>
+          <div className="flex-row-responsive" style={{ gap: '4rem' }}>
             <p style={{ fontSize: '1.5rem', lineHeight: '1.6', flex: '1 1 500px', fontWeight: 500 }}>
               Golden Petal is an interactive event and celebration venue located in the heart of Mangaluru. We opened to make planning life's biggest milestones less intimidating and a lot more fun.
             </p>
@@ -40,7 +40,7 @@ const AboutUs = () => {
             WHAT WE BELIEVE.
           </h2>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem' }}>
             <div className="brutalist-card" style={{ padding: '3rem', color: '#000000' }}>
               <h3 style={{ fontSize: '3rem', color: '#B81387', marginBottom: '1rem', fontFamily: 'Oswald, sans-serif' }}>01</h3>
               <h4 className="title-display" style={{ fontSize: '2rem', marginBottom: '1rem', lineHeight: 1 }}>MEMORIES MATTER.</h4>
@@ -133,7 +133,7 @@ const AboutUs = () => {
           </div>
 
           {/* Quotes */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
             <div style={{ backgroundColor: 'var(--bg-cream)', color: '#000000', padding: '3rem 4rem' }}>
               <div style={{ fontSize: '5rem', color: '#B81387', lineHeight: 1, marginBottom: '1rem', fontWeight: 900, fontFamily: 'Arial, sans-serif' }}>“</div>
               <p style={{ fontSize: '1.4rem', fontWeight: 500, marginBottom: '3rem', lineHeight: '1.5' }}>
@@ -160,7 +160,7 @@ const AboutUs = () => {
             ▼ WHERE WE ARE
           </div>
           
-          <h2 className="title-display" style={{ fontSize: 'clamp(2.5rem, 5vw, 7rem)', lineHeight: 0.9, marginBottom: '2.5rem', letterSpacing: '-1px', color: '#FFFFFF', whiteSpace: 'nowrap' }}>
+          <h2 className="title-display" style={{ fontSize: 'clamp(2.5rem, 5vw, 7rem)', lineHeight: 0.9, marginBottom: '2.5rem', letterSpacing: '-1px', color: '#FFFFFF' }}>
             WHY MANGALORE? IT'S HOME.
           </h2>
           

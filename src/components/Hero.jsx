@@ -54,10 +54,10 @@ const Hero = () => {
 
   return (
     <section 
-      id="hero" 
+      id="hero"
+      className="hero-section" 
       style={{ 
         position: 'relative',
-        height: 'calc(100vh - 122px)', 
         width: '100%',
         overflow: 'hidden',
         backgroundImage: `url(${bgImage})`,
@@ -75,18 +75,17 @@ const Hero = () => {
         zIndex: 1
       }}></div>
 
-      <div style={{ position: 'relative', zIndex: 2, width: '100%', height: '100%' }}>
+      <div className="blob-container" style={{ position: 'relative', zIndex: 2, width: '100%', height: '100%' }}>
         
-
 
         {/* Floating Blobs */}
         {blobs.map(blob => (
           <div
             key={blob.id}
+            className="blob-wrapper"
             onMouseEnter={() => setBgImage(blob.image)}
             onMouseLeave={() => setBgImage('/addon_fog_real.jpg')}
             style={{
-              position: 'absolute',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -121,6 +120,42 @@ const Hero = () => {
           </div>
         ))}
       </div>
+      <style>{`
+        .hero-section {
+          height: calc(100vh - 122px);
+        }
+        .blob-wrapper {
+          position: absolute;
+        }
+        @media (max-width: 768px) {
+          .hero-section {
+            height: auto !important;
+            min-height: 100vh;
+            padding: 2rem 1rem !important;
+          }
+          .blob-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            gap: 1.5rem;
+            height: auto !important;
+          }
+          .blob-wrapper {
+            position: relative !important;
+            top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+            width: 40vw !important;
+            height: 40vw !important;
+            padding: 1rem !important;
+          }
+          .blob-wrapper h3 {
+            font-size: 1.2rem !important;
+          }
+          .blob-wrapper p {
+            font-size: 0.8rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

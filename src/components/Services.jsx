@@ -28,11 +28,11 @@ const Services = () => {
         position: 'relative'
       }}>
         {serviceImages.slice(0, 4).map((src, index) => (
-          <div key={index} style={{
+          <div key={index} className="service-card-mobile" style={{
             position: 'sticky',
-            top: '25vh', // Increased from 15vh so they stick lower down, safely below the tall Navbar
-            marginLeft: `${index * 25}%`, // 25% spacing ensures a 3% gap between 22% width cards
-            width: '22%', // Take up less width so they don't touch
+            top: '25vh', 
+            marginLeft: `${index * 25}%`, 
+            width: '22%', 
             minWidth: '220px',
             borderRadius: '20px',
             overflow: 'hidden',
