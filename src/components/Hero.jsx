@@ -9,7 +9,7 @@ const Hero = () => {
       id: 1,
       text: 'BIRTHDAY PARTIES',
       subtext: 'Make it unforgettable',
-      color: '#FFB6C1',
+      color: '#FFFFFF',
       textColor: 'black',
       image: '/hero_birthday_luxury.png',
       style: { top: '15%', left: '5%', width: 'clamp(180px, 15vw, 250px)', height: 'clamp(130px, 12vw, 180px)', borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' }
@@ -18,7 +18,7 @@ const Hero = () => {
       id: 2,
       text: 'COUPLE SURPRISE',
       subtext: 'Romantic setups',
-      color: '#FF0000',
+      color: '#D4AF37',
       textColor: 'white',
       image: '/hero_couple_luxury.png',
       style: { top: '45%', right: '8%', width: 'clamp(200px, 18vw, 280px)', height: 'clamp(150px, 15vw, 220px)', borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%' }
@@ -27,7 +27,7 @@ const Hero = () => {
       id: 3,
       text: 'ANNIVERSARY',
       subtext: 'Celebrate love',
-      color: '#007BFF',
+      color: '#D4AF37',
       textColor: 'white',
       image: '/anniversary.png',
       style: { top: '20%', left: '40%', width: 'clamp(180px, 15vw, 240px)', height: 'clamp(140px, 12vw, 190px)', borderRadius: '50% 50% 20% 80% / 25% 80% 20% 75%' }
@@ -45,7 +45,7 @@ const Hero = () => {
       id: 5,
       text: 'BRIDE TO BE',
       subtext: 'Celebrate her',
-      color: '#CCFF00',
+      color: '#D4AF37',
       textColor: 'black',
       image: '/bridetobe.png',
       style: { bottom: '15%', right: '30%', width: 'clamp(150px, 13vw, 200px)', height: 'clamp(150px, 13vw, 200px)', borderRadius: '40% 60% 60% 40% / 60% 40% 60% 40%' }
@@ -53,7 +53,7 @@ const Hero = () => {
   ];
 
   return (
-    <section 
+    <section className="mobile-padding" 
       id="hero"
       className="hero-section" 
       style={{ 
@@ -70,7 +70,7 @@ const Hero = () => {
       <div style={{
         position: 'absolute',
         top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: 'rgba(0,0,0,0.5)',
         pointerEvents: 'none',
         zIndex: 1
       }}></div>
@@ -96,7 +96,7 @@ const Hero = () => {
               padding: '1.5rem',
               cursor: 'pointer',
               transition: 'transform 0.3s ease, border-radius 0.3s ease',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
               ...blob.style
             }}
             onMouseOver={(e) => {
@@ -144,8 +144,9 @@ const Hero = () => {
           .blob-wrapper {
             position: relative !important;
             top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
-            width: 40vw !important;
-            height: 40vw !important;
+            width: 100% !important;
+            max-width: 300px;
+            height: 200px !important;
             padding: 1rem !important;
           }
           .blob-wrapper h3 {

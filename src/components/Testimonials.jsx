@@ -94,23 +94,23 @@ const Testimonials = () => {
       transform: `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`,
       transformStyle: 'preserve-3d',
       transition: 'all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)', // Smooth realistic 3D swipe
-      backgroundColor: '#F3F2E7', // Cream/off-white background
-      border: '3px solid #1C3F35', // Dark green border
+      backgroundColor: '#FFFFFF', // Cream/off-white background
+      border: '3px solid #000000', // Dark green border
       borderRadius: '8px',
       padding: '1.2rem',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      boxShadow: diff === 0 ? '0 20px 40px rgba(0,0,0,0.15)' : 'none'
+      boxShadow: diff === 0 ? '0 20px 40px rgba(0,0,0,0.5)' : 'none'
     };
   };
 
   return (
-    <section id="testimonials" style={{ padding: '8rem 2rem', backgroundColor: '#F3F2E7', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <section className="mobile-padding" id="testimonials" style={{ padding: '8rem 2rem', backgroundColor: '#FFFFFF', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h2 className="title-display" style={{ fontSize: '3rem', color: '#1C3F35', margin: 0 }}>STORIES</h2>
-        <p style={{ fontSize: '1.2rem', fontWeight: 600, color: '#1C3F35', letterSpacing: '2px' }}>REAL MOMENTS</p>
+        <h2 className="title-display mobile-text-clamp" style={{ fontSize: '3rem', color: '#000000', margin: 0 }}>STORIES</h2>
+        <p style={{ fontSize: '1.2rem', fontWeight: 600, color: '#000000', letterSpacing: '2px' }}>REAL MOMENTS</p>
       </div>
 
       <div style={{ position: 'relative', width: '100%', maxWidth: '480px', height: '520px', perspective: '1200px', transformStyle: 'preserve-3d' }}>
@@ -119,15 +119,15 @@ const Testimonials = () => {
           const isFront = (index - activeIndex + testimonials.length) % testimonials.length === 0;
           return (
           <div key={test.id} style={getCardStyle(index)}>
-            <div style={{ width: '100%', height: '260px', overflow: 'hidden', border: '1px solid #1C3F35' }}>
+            <div style={{ width: '100%', height: '260px', overflow: 'hidden', border: '1px solid #000000' }}>
               <img src={test.image} alt={test.author} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             
-            <p style={{ fontFamily: 'serif', fontSize: '1.3rem', color: '#1C3F35', textAlign: 'center', lineHeight: '1.4', margin: '1.5rem 0' }}>
+            <p style={{ fontFamily: 'serif', fontSize: '1.3rem', color: '#000000', textAlign: 'center', lineHeight: '1.4', margin: '1.5rem 0' }}>
               “{test.text}”
             </p>
             
-            <div style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '2px', color: '#1C3F35', textTransform: 'uppercase', marginBottom: '1rem' }}>
+            <div style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '2px', color: '#000000', textTransform: 'uppercase', marginBottom: '1rem' }}>
               {test.author}
             </div>
 
@@ -142,8 +142,8 @@ const Testimonials = () => {
               <button 
                 onClick={handleNext}
                 style={{
-                  backgroundColor: '#1C3F35',
-                  color: '#F3F2E7',
+                  backgroundColor: '#000000',
+                  color: '#FFFFFF',
                   border: 'none',
                   padding: '10px 30px',
                   borderRadius: '50px',
@@ -152,7 +152,7 @@ const Testimonials = () => {
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
-                  boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.5)',
                   transition: 'transform 0.2s ease'
                 }}
                 onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}

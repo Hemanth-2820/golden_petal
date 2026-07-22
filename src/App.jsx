@@ -12,6 +12,8 @@ import Menu from './components/Menu';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import Highlights from './components/Highlights';
+import EventCategories from './components/EventCategories';
+import PerfectSetup from './components/PerfectSetup';
 import ContactUs from './components/ContactUs';
 import BookNow from './components/BookNow';
 import './index.css';
@@ -27,6 +29,8 @@ function App() {
               <Hero />
               <Intro />
               <Highlights />
+              <PerfectSetup />
+              <EventCategories />
               <Services />
             </>
           } />

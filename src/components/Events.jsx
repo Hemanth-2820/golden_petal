@@ -39,35 +39,35 @@ const Events = () => {
     'BIRTHDAY': {
       title: 'BIRTHDAY PARTIES.',
       desc: 'Make every birthday unforgettable with beautiful decor and perfect ambience.',
-      color: '#B81387',
+      color: '#D4AF37',
       image: '/birthday.png',
       quote: 'The birthday setup was magical! Beautiful decorations and perfectly hassle-free.'
     },
     'COUPLE SURPRISE': {
       title: 'COUPLE SURPRISE.',
       desc: 'Make their heart skip a beat with a romantic setup and candle-lit path.',
-      color: '#4CAF50',
+      color: '#D4AF37',
       image: '/romantic.png',
       quote: 'A truly romantic experience! The ambiance was absolutely perfect for our surprise.'
     },
     'ANNIVERSARY': {
       title: 'ANNIVERSARY.',
       desc: 'Celebrate your journey of love and make your anniversary truly special.',
-      color: '#0000FF',
+      color: '#D4AF37',
       image: '/anniversary.png',
       quote: 'Elegant decor and a beautiful evening to celebrate our milestone.'
     },
     'BABY SHOWER': {
       title: 'BABY SHOWER.',
       desc: 'A precious moment deserves a beautiful celebration. Joy and beautiful memories forever.',
-      color: '#E11C83',
+      color: '#D4AF37',
       image: '/babyshower.png',
       quote: 'Adorable setup for our baby shower! Comfortable and picture perfect.'
     },
     'BRIDE TO BE': {
       title: 'BRIDE / GROOM TO BE.',
       desc: 'Celebrate your special journey with love, laughter & unforgettable memories.',
-      color: '#FF9800',
+      color: '#D4AF37',
       image: '/bridetobe.png',
       quote: 'The perfect engagement vibe. Beautiful ambience and customized decorations.'
     }
@@ -77,52 +77,52 @@ const Events = () => {
     <div id="events-page">
       
       {/* 1. Hero Section */}
-      <section className="dotted-bg" style={{ padding: '8rem 2rem', borderBottom: '4px solid var(--text-black-green)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'center' }}>
-          <div style={{ flex: '1 1 500px' }}>
-            <div style={{ fontWeight: 700, letterSpacing: '2px', marginBottom: '3rem', fontSize: '1rem', opacity: 0.6, textTransform: 'uppercase' }}>
+      <section className="dotted-bg mobile-padding" style={{ backgroundColor: '#000000', padding: '8rem 2rem', borderBottom: '4px solid #D4AF37' }}>
+        <div className="flex-stack-mobile" style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'center' }}>
+          <div className="mobile-w-full" style={{ flex: '1 1 500px' }}>
+            <div style={{ fontWeight: 700, letterSpacing: '2px', marginBottom: '3rem', fontSize: '1rem', color: '#D4AF37', textTransform: 'uppercase' }}>
               ▼ HOST AN EVENT
             </div>
             
-            <h1 className="title-display" style={{ fontSize: 'clamp(4rem, 10vw, 8rem)', lineHeight: 0.9, marginBottom: '2rem', color: '#000000' }}>
+            <h1 className="title-display mobile-text-clamp" style={{ fontSize: 'clamp(4rem, 10vw, 8rem)', lineHeight: 0.9, marginBottom: '2rem', color: '#FFFFFF' }}>
               YOUR CELEBRATION.<br/>OUR VENUE.
             </h1>
             
-            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', fontWeight: 500 }}>
+            <p style={{ fontSize: '1.5rem', lineHeight: '1.6', fontWeight: 500, color: '#FFFFFF' }}>
               Birthdays, anniversaries, couple surprises, and milestones. We clear the room. You bring the people.
             </p>
           </div>
           
-          <div className="brutalist-card" style={{ flex: '1 1 400px', height: '500px', padding: 0 }}>
+          <div className="brutalist-card mobile-w-full" style={{ flex: '1 1 400px', height: '500px', padding: 0 }}>
             <img src="/addon_fog_real.jpg" alt="Golden Petal Celebration" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
       </section>
 
       {/* 2. Pick Your Path */}
-      <section style={{ backgroundColor: 'var(--bg-cream)', padding: '8rem 2rem', color: '#000000', borderBottom: '4px solid var(--text-black-green)' }}>
+      <section style={{ backgroundColor: 'var(--bg-white)', padding: '8rem 2rem', color: '#000000', borderBottom: '4px solid var(--text-black)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ fontWeight: 700, letterSpacing: '2px', marginBottom: '3rem', fontSize: '1rem', opacity: 0.6, textTransform: 'uppercase' }}>
             ▼ CELEBRATE WITH US
           </div>
           
-          <h2 className="title-display" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 0.9, marginBottom: '4rem' }}>
+          <h2 className="title-display mobile-text-clamp" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 0.9, marginBottom: '4rem' }}>
             PICK YOUR EVENT.
           </h2>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
             
             {Object.keys(eventData).map(eventKey => (
-              <div key={eventKey} className="brutalist-card" onClick={() => handlePathClick(eventKey)} style={{ padding: '3rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div key={eventKey} className="brutalist-card" onClick={() => handlePathClick(eventKey)} style={{ backgroundColor: '#000000', color: '#FFFFFF', padding: '3rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', border: '4px solid #D4AF37' }}>
                 <div>
-                  <h3 className="title-display" style={{ fontSize: '2.5rem', color: eventData[eventKey].color, marginBottom: '1rem' }}>
+                  <h3 className="title-display mobile-text-clamp" style={{ fontSize: '2.5rem', color: '#D4AF37', marginBottom: '1rem' }}>
                     {eventData[eventKey].title}
                   </h3>
                   <p style={{ fontSize: '1.2rem', fontWeight: 500, marginBottom: '2rem' }}>
                     {eventData[eventKey].desc}
                   </p>
                 </div>
-                <div style={{ textAlign: 'right', fontSize: '2rem', marginTop: '2rem' }}>→</div>
+                <div style={{ textAlign: 'right', fontSize: '2rem', marginTop: '2rem', color: '#D4AF37' }}>→</div>
               </div>
             ))}
 
@@ -132,24 +132,24 @@ const Events = () => {
 
       {/* 3. Dynamic Booking Section */}
       {selectedPath && (
-        <section id="booking-flow" style={{ backgroundColor: eventData[selectedPath].color, padding: '6rem 2rem', color: 'white', borderBottom: '4px solid var(--text-black-green)' }}>
+        <section id="booking-flow" className="mobile-padding" style={{ backgroundColor: eventData[selectedPath].color, padding: '6rem 2rem', color: 'white', borderBottom: '4px solid var(--text-black)' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             
             <div style={{ fontWeight: 700, letterSpacing: '2px', marginBottom: '2rem', fontSize: '1rem', opacity: 0.9, textTransform: 'uppercase' }}>
               ▼ SELECTED / {selectedPath}
             </div>
             
-            <h2 className="title-display" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 0.9, marginBottom: '1rem' }}>
+            <h2 className="title-display mobile-text-clamp" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 0.9, marginBottom: '1rem' }}>
               {selectedPath},<br/>UPGRADED.
             </h2>
             <p style={{ fontSize: '1.5rem', fontWeight: 500, marginBottom: '4rem', maxWidth: '700px' }}>
               A celebration you'll actually remember. Custom setups, logistics handled. Let's get your booking started.
             </p>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem' }}>
+            <div className="flex-stack-mobile" style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem' }}>
               
               {/* Left Side: Images & Quote */}
-              <div style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              <div className="mobile-w-full" style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <div className="brutalist-card" style={{ padding: 0 }}>
                   <img src={eventData[selectedPath].image} alt={selectedPath} style={{ width: '100%', height: 'auto', maxHeight: '500px', objectFit: 'cover' }} />
                 </div>
@@ -158,13 +158,13 @@ const Events = () => {
                   <p style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: '1rem' }}>
                     {eventData[selectedPath].quote}
                   </p>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '2px', color: '#666' }}>GOOGLE • 5 STARS</div>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '2px', color: '#000' }}>GOOGLE • 5 STARS</div>
                 </div>
               </div>
 
               {/* Right Side: Brutalist Booking Form (Unchanged functionality) */}
-              <div style={{ flex: '1 1 400px' }}>
-                <div className="brutalist-card" style={{ padding: '3rem', backgroundColor: 'white', color: 'black' }}>
+              <div className="mobile-w-full" style={{ flex: '1 1 400px' }}>
+                <div className="brutalist-card mobile-padding" style={{ padding: '3rem', backgroundColor: 'white', color: 'black' }}>
                   
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                     <div style={{ display: 'flex', gap: '5px' }}>
@@ -172,12 +172,12 @@ const Events = () => {
                         <div key={step} style={{ width: '15px', height: '15px', borderRadius: '50%', border: '2px solid black', backgroundColor: step <= bookingStep ? eventData[selectedPath].color : 'transparent' }} />
                       ))}
                     </div>
-                    <div style={{ backgroundColor: 'var(--accent-lime)', padding: '5px 10px', border: '2px solid black', fontWeight: 900, fontSize: '0.9rem' }}>
+                    <div style={{ backgroundColor: 'var(--accent-gold)', padding: '5px 10px', border: '2px solid black', fontWeight: 900, fontSize: '0.9rem' }}>
                       STEP {bookingStep} OF 3
                     </div>
                   </div>
 
-                  <h3 className="title-display" style={{ fontSize: '2.5rem', marginBottom: '1rem', lineHeight: 1 }}>
+                  <h3 className="title-display mobile-text-clamp" style={{ fontSize: '2.5rem', marginBottom: '1rem', lineHeight: 1 }}>
                     {bookingStep === 1 ? 'TELL US ABOUT THE EVENT.' : bookingStep === 2 ? 'CHOOSE YOUR SLOT.' : 'CONFIRM & PAY.'}
                   </h3>
 
@@ -195,7 +195,7 @@ const Events = () => {
                         <label style={{ display: 'block', fontWeight: 700, marginBottom: '0.5rem' }}>Expected Guests *</label>
                         <input type="text" value={formData.guests} onChange={e => setFormData({...formData, guests: e.target.value})} style={{ width: '100%', padding: '1rem', border: '3px solid black', fontSize: '1.2rem' }} placeholder="e.g. 15" />
                       </div>
-                      <button onClick={handleNextStep} style={{ backgroundColor: 'var(--accent-lime)', color: 'black', border: '4px solid black', padding: '1rem', fontSize: '1.5rem', fontWeight: 900, cursor: 'pointer', marginTop: '1rem', width: '100%' }}>
+                      <button onClick={handleNextStep} style={{ backgroundColor: 'var(--accent-gold)', color: 'black', border: '4px solid black', padding: '1rem', fontSize: '1.5rem', fontWeight: 900, cursor: 'pointer', marginTop: '1rem', width: '100%' }}>
                         NEXT →
                       </button>
                     </div>
@@ -213,7 +213,7 @@ const Events = () => {
                           <label style={{ display: 'block', fontWeight: 700, marginBottom: '0.5rem', marginTop: '1rem' }}>Available Slots</label>
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
                             {availableSlots.map((slot, i) => (
-                              <div key={i} onClick={() => setFormData({...formData, slot})} style={{ padding: '1rem', border: '3px solid black', backgroundColor: formData.slot === slot ? 'var(--accent-lime)' : 'white', cursor: 'pointer', fontWeight: 700, textAlign: 'center' }}>
+                              <div key={i} onClick={() => setFormData({...formData, slot})} style={{ padding: '1rem', border: '3px solid black', backgroundColor: formData.slot === slot ? 'var(--accent-gold)' : 'white', cursor: 'pointer', fontWeight: 700, textAlign: 'center' }}>
                                 {slot}
                               </div>
                             ))}
@@ -221,7 +221,7 @@ const Events = () => {
                         </div>
                       )}
 
-                      <button onClick={handleNextStep} disabled={!formData.date || !formData.slot} style={{ backgroundColor: (formData.date && formData.slot) ? 'var(--accent-lime)' : '#eee', color: 'black', border: '4px solid black', padding: '1rem', fontSize: '1.5rem', fontWeight: 900, cursor: (formData.date && formData.slot) ? 'pointer' : 'not-allowed', marginTop: '1rem', width: '100%' }}>
+                      <button onClick={handleNextStep} disabled={!formData.date || !formData.slot} style={{ backgroundColor: (formData.date && formData.slot) ? 'var(--accent-gold)' : '#FFF', color: 'black', border: '4px solid black', padding: '1rem', fontSize: '1.5rem', fontWeight: 900, cursor: (formData.date && formData.slot) ? 'pointer' : 'not-allowed', marginTop: '1rem', width: '100%' }}>
                         NEXT →
                       </button>
                       <button onClick={() => setBookingStep(1)} style={{ backgroundColor: 'transparent', color: 'black', border: 'none', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}>
@@ -232,7 +232,7 @@ const Events = () => {
 
                   {bookingStep === 3 && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '2rem', alignItems: 'center' }}>
-                      <div style={{ textAlign: 'center', width: '100%', backgroundColor: '#f0f0f0', padding: '1rem', border: '3px solid black' }}>
+                      <div style={{ textAlign: 'center', width: '100%', backgroundColor: '#FFFFFF', padding: '1rem', border: '3px solid black' }}>
                         <div style={{ fontWeight: 700 }}>{selectedPath} EVENT</div>
                         <div>{formData.date} | {formData.slot}</div>
                         <div style={{ fontSize: '2rem', fontWeight: 900, marginTop: '1rem' }}>₹999</div>
@@ -240,7 +240,7 @@ const Events = () => {
                       </div>
 
                       <div style={{ width: '200px', height: '200px', border: '4px solid black', padding: '10px', backgroundColor: 'white' }}>
-                        <div style={{ width: '100%', height: '100%', backgroundColor: '#eee', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+                        <div style={{ width: '100%', height: '100%', backgroundColor: '#FFF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                           <span style={{ fontSize: '3rem' }}>📱</span>
                           <span style={{ fontWeight: 900, fontSize: '0.8rem', marginTop: '10px' }}>SCAN TO PAY</span>
                         </div>
@@ -248,7 +248,7 @@ const Events = () => {
                       
                       <p style={{ textAlign: 'center', fontWeight: 600, fontSize: '0.9rem' }}>Scan the QR code with any UPI app (GPay, PhonePe, Paytm) to confirm your booking.</p>
 
-                      <button onClick={() => { alert('Booking Confirmed! (This is a frontend demo)'); setBookingStep(1); setSelectedPath(null); }} style={{ backgroundColor: 'var(--accent-lime)', color: 'black', border: '4px solid black', padding: '1rem', fontSize: '1.5rem', fontWeight: 900, cursor: 'pointer', marginTop: '1rem', width: '100%' }}>
+                      <button onClick={() => { alert('Booking Confirmed! (This is a frontend demo)'); setBookingStep(1); setSelectedPath(null); }} style={{ backgroundColor: 'var(--accent-gold)', color: 'black', border: '4px solid black', padding: '1rem', fontSize: '1.5rem', fontWeight: 900, cursor: 'pointer', marginTop: '1rem', width: '100%' }}>
                         I HAVE PAID
                       </button>
                       <button onClick={() => setBookingStep(2)} style={{ backgroundColor: 'transparent', color: 'black', border: 'none', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}>

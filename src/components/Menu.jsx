@@ -9,12 +9,12 @@ const Menu = () => {
   ];
 
   return (
-    <section id="menu">
+    <section className="mobile-padding" id="menu">
       <h2 className="section-title">OUR MENU</h2>
       <div className="grid-auto-fit">
         {menuItems.map((menu, index) => (
           <div key={index} className="momo-panel">
-            <h3 className="title-display" style={{ fontSize: '1.5rem', marginBottom: '1.5rem', borderBottom: '2px solid var(--text-dark-green)', paddingBottom: '0.5rem' }}>
+            <h3 className="title-display mobile-text-clamp" style={{ fontSize: '1.5rem', marginBottom: '1.5rem', borderBottom: '2px solid var(--text-black)', paddingBottom: '0.5rem' }}>
               {menu.category}
             </h3>
             <ul style={{ listStyle: 'none', lineHeight: '2', fontSize: '1.2rem', fontWeight: 500 }}>
