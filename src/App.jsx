@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Hero from './components/Hero';
+import Intro from './components/Intro';
 import AboutUs from './components/AboutUs';
 import Services from './components/Services';
 import Addons from './components/Addons';
@@ -22,6 +23,7 @@ function App() {
           <Route index element={
             <>
               <Hero />
+              <Intro />
               <Highlights />
               <Services />
             </>

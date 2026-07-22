@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav style={{ 
-      background: '#FFFFFF',
-      borderBottom: '2px solid var(--text-dark-green)',
+      background: '#000000',
+      borderBottom: '2px solid #333',
       padding: '1.5rem 2rem',
       position: 'sticky', top: 0, zIndex: 1000
     }}>
@@ -19,19 +19,20 @@ const Navbar = () => {
           <Link to="/addons" className="nav-link">ADD-ONS</Link>
           <Link to="/testimonials" className="nav-link">TESTIMONIALS</Link>
           <Link to="/gallery" className="nav-link">GALLERY</Link>
-          <Link to="/contact" className="nav-link" style={{ color: 'var(--text-dark-green)', fontWeight: 700 }}>CONTACT</Link>
-          <Link to="/events" style={{ backgroundColor: '#B81387', color: 'white', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid black', display: 'flex', alignItems: 'center' }}>BOOK</Link>
+          <Link to="/contact" className="nav-link" style={{ fontWeight: 700 }}>CONTACT</Link>
+          <Link to="/events" style={{ backgroundColor: '#B81387', color: 'white', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid white', display: 'flex', alignItems: 'center' }}>BOOK</Link>
         </div>
       </div>
       <style>{`
         .nav-link {
           font-family: 'Oswald', sans-serif;
           font-size: 1.1rem;
-          color: var(--text-black-green);
+          color: #F8F6F0;
+          text-decoration: none;
           transition: color 0.2s ease;
         }
         .nav-link:hover {
-          color: #7b9468;
+          color: #D7F16C;
         }
       `}</style>
     </nav>

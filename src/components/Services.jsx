@@ -10,21 +10,35 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" style={{ padding: '6rem 2rem', background: 'var(--text-dark-green)' }}>
+    <section id="services" style={{ 
+      padding: '6rem 2rem', 
+      backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(10, 25, 20, 0.9)), url("/packages_bg.png")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed' // Adds a premium parallax scroll effect
+    }}>
       <h2 className="section-title" style={{ color: 'var(--accent-lime)' }}>OUR PACKAGES</h2>
-      
       <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '3rem',
-        maxWidth: '1300px',
-        margin: '0 auto'
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '60vh', // Creates long scroll space between cards arriving
+        maxWidth: '1200px',
+        margin: '0 auto',
+        paddingBottom: '30vh',
+        position: 'relative'
       }}>
-        {serviceImages.map((src, index) => (
+        {serviceImages.slice(0, 4).map((src, index) => (
           <div key={index} style={{
+            position: 'sticky',
+            top: '25vh', // Increased from 15vh so they stick lower down, safely below the tall Navbar
+            marginLeft: `${index * 25}%`, // 25% spacing ensures a 3% gap between 22% width cards
+            width: '22%', // Take up less width so they don't touch
+            minWidth: '220px',
             borderRadius: '20px',
             overflow: 'hidden',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.5)', 
+            border: '2px solid var(--accent-lime)',
+            zIndex: index, 
             transition: 'transform 0.3s ease'
           }}
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}

@@ -6,10 +6,15 @@ const Gallery = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const featuredVideos = [
-    { id: 1, src: '/romantic.png', category: 'WEDDING', title: 'Kelsey & Anthony' },
-    { id: 2, src: '/new_addon_candles.jpg', category: 'PORTRAIT', title: 'Romantic Candles' },
-    { id: 3, src: '/anniversary.png', category: 'CELEBRATE', title: 'Anniversary Special' }
+    { id: 1, src: '/romantic.png', category: 'ROMANTIC', title: 'Kelsey & Anthony' },
+    { id: 2, src: '/birthday.png', category: 'BIRTHDAY', title: 'Birthday Bash' },
+    { id: 3, src: '/anniversary.png', category: 'ANNIVERSARY', title: 'Anniversary Special' }
   ];
+
+  const handleNavClick = (index) => {
+    setActiveIndex(index);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     let animationFrameId;
@@ -125,10 +130,10 @@ const Gallery = () => {
           border: '1px solid var(--text-dark-green)',
           zIndex: 100
         }}>
-          <div style={{ padding: '15px 30px', borderRight: '1px solid var(--text-dark-green)', fontWeight: 700, fontFamily: 'Oswald', whiteSpace: 'nowrap' }}>ROMANTIC</div>
-          <div style={{ padding: '15px 30px', borderRight: '1px solid var(--text-dark-green)', fontWeight: 700, fontFamily: 'Oswald', whiteSpace: 'nowrap' }}>BIRTHDAY</div>
-          <div style={{ padding: '15px 30px', fontWeight: 700, fontFamily: 'Oswald', whiteSpace: 'nowrap' }}>ANNIVERSARY</div>
-          <Link to="/contact" style={{ background: 'var(--text-black-green)', color: 'var(--bg-cream)', padding: '15px 30px', fontWeight: 700, fontFamily: 'Oswald', display: 'flex', alignItems: 'center', gap: '10px', whiteSpace: 'nowrap' }}>
+          <button onClick={() => handleNavClick(0)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '15px 30px', borderRight: '1px solid var(--text-dark-green)', fontWeight: 700, fontFamily: 'Oswald', whiteSpace: 'nowrap', fontSize: '1rem' }}>ROMANTIC</button>
+          <button onClick={() => handleNavClick(1)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '15px 30px', borderRight: '1px solid var(--text-dark-green)', fontWeight: 700, fontFamily: 'Oswald', whiteSpace: 'nowrap', fontSize: '1rem' }}>BIRTHDAY</button>
+          <button onClick={() => handleNavClick(2)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '15px 30px', fontWeight: 700, fontFamily: 'Oswald', whiteSpace: 'nowrap', fontSize: '1rem' }}>ANNIVERSARY</button>
+          <Link to="/contact" style={{ background: 'var(--text-black-green)', color: 'var(--bg-cream)', padding: '15px 30px', fontWeight: 700, fontFamily: 'Oswald', display: 'flex', alignItems: 'center', gap: '10px', whiteSpace: 'nowrap', textDecoration: 'none' }}>
             BOOK <span style={{ fontSize: '1.2rem' }}>➔</span>
           </Link>
         </div>

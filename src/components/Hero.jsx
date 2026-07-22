@@ -43,11 +43,11 @@ const Hero = () => {
     },
     {
       id: 5,
-      text: 'BOOK NOW',
-      subtext: 'Starts @ Rs.999/-',
+      text: 'BRIDE TO BE',
+      subtext: 'Celebrate her',
       color: '#CCFF00',
       textColor: 'black',
-      image: '/addon_artificial_bouquet.jpg',
+      image: '/bridetobe.png',
       style: { bottom: '15%', right: '30%', width: 'clamp(150px, 13vw, 200px)', height: 'clamp(150px, 13vw, 200px)', borderRadius: '40% 60% 60% 40% / 60% 40% 60% 40%' }
     }
   ];
@@ -77,11 +77,7 @@ const Hero = () => {
 
       <div style={{ position: 'relative', zIndex: 2, width: '100%', height: '100%' }}>
         
-        {/* Title positioned at top left or center */}
-        <div style={{ position: 'absolute', top: '5%', left: '5%', color: 'white', pointerEvents: 'none' }}>
-          <h1 className="title-display" style={{ fontSize: '4rem', margin: 0, lineHeight: 1 }}>GOLDEN<br/>PETAL</h1>
-          <p style={{ fontSize: '1.2rem', fontWeight: 600, letterSpacing: '2px' }}>HOUSE OF CELEBRATION</p>
-        </div>
+
 
         {/* Floating Blobs */}
         {blobs.map(blob => (
@@ -113,13 +109,13 @@ const Hero = () => {
           >
             {blob.text === 'BOOK NOW' ? (
               <Link to="/contact" style={{ color: blob.textColor, textDecoration: 'none' }}>
-                <h3 style={{ fontSize: '1.8rem', fontWeight: 900, margin: 0 }}>{blob.text}</h3>
-                <p style={{ fontSize: '1rem', fontWeight: 600, margin: '5px 0 0' }}>{blob.subtext}</p>
+                <h3 style={{ fontSize: '1.8rem', fontWeight: 900, margin: 0, color: 'inherit' }}>{blob.text}</h3>
+                <p style={{ fontSize: '1rem', fontWeight: 600, margin: '5px 0 0', color: 'inherit' }}>{blob.subtext}</p>
               </Link>
             ) : (
               <Link to="/events" style={{ color: blob.textColor, textDecoration: 'none' }}>
-                <h3 style={{ fontSize: '1.8rem', fontWeight: 900, margin: 0 }}>{blob.text}</h3>
-                <p style={{ fontSize: '1rem', fontWeight: 600, margin: '5px 0 0' }}>{blob.subtext}</p>
+                <h3 style={{ fontSize: '1.8rem', fontWeight: 900, margin: 0, color: 'inherit' }}>{blob.text}</h3>
+                <p style={{ fontSize: '1rem', fontWeight: 600, margin: '5px 0 0', color: 'inherit' }}>{blob.subtext}</p>
               </Link>
             )}
           </div>

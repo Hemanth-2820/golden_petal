@@ -1,39 +1,159 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ContactUs = () => {
+  const [category, setCategory] = useState('GENERAL');
+
   return (
-    <section id="contact-us" style={{ background: 'var(--text-dark-green)', maxWidth: '100% !important', color: 'var(--bg-cream)' }}>
-      <div style={{ maxWidth: '1300px', margin: '0 auto' }}>
-        <h2 className="section-title" style={{ color: 'var(--accent-lime)' }}>CONTACT US</h2>
-        
-        <div className="grid-auto-fit" style={{ alignItems: 'start' }}>
-          <div className="momo-panel-dark" style={{ border: '2px solid var(--accent-lime)' }}>
-            <h3 className="title-display" style={{ fontSize: '2rem', marginBottom: '2rem' }}>GET IN TOUCH</h3>
-            <div style={{ marginBottom: '2rem' }}>
-              <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>+91 9611115040</div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>+91 7899426055</div>
+    <div id="contact-page-brutalist">
+      {/* 1. Hero Section */}
+      <section style={{ backgroundColor: 'var(--bg-cream, #F8F6F0)', padding: '6rem 2rem 4rem', borderBottom: '2px solid #000' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h1 className="title-display" style={{ fontSize: 'clamp(4rem, 10vw, 8rem)', lineHeight: 0.9, marginBottom: '1.5rem', color: '#000', letterSpacing: '-2px' }}>
+            GOT A<br/>QUESTION.
+          </h1>
+          <p style={{ fontSize: '1.5rem', fontWeight: 500, marginBottom: '4rem', color: '#333' }}>
+            Quick answers below. Phone, email, and the form catch everything else.
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem', borderTop: '2px solid transparent' }}>
+            <div>
+              <div style={{ fontWeight: 700, letterSpacing: '2px', fontSize: '0.8rem', color: '#666', marginBottom: '0.5rem' }}>CALL US</div>
+              <div style={{ fontSize: '1.5rem', fontWeight: 900, textDecoration: 'underline', marginBottom: '0.5rem', color: '#000' }}>+91 9611115040</div>
+              <div style={{ fontSize: '1.5rem', fontWeight: 900, textDecoration: 'underline', color: '#000' }}>+91 7899426055</div>
             </div>
             <div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: '1.6' }}>
-                Karunadham Complex, KSR Road,<br/>
-                Near City Centre, Hampankatta,<br/>
-                Mangalore
+              <div style={{ fontWeight: 700, letterSpacing: '2px', fontSize: '0.8rem', color: '#666', marginBottom: '0.5rem' }}>EMAIL US</div>
+              <div style={{ fontSize: '1.5rem', fontWeight: 900, textDecoration: 'underline', color: '#000' }}>info@goldenpetal.in</div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+              <div style={{ backgroundColor: '#D7F16C', border: '2px solid #000', padding: '4px 10px', fontSize: '0.7rem', fontWeight: 900, display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#000' }}>
+                <span style={{ width: '8px', height: '8px', backgroundColor: '#000', borderRadius: '50%', display: 'inline-block' }}></span>
+                OPEN NOW
+              </div>
+              <div style={{ color: '#000' }}>
+                <div style={{ fontWeight: 700, fontSize: '1.1rem' }}>Karunadham Complex, KSR Road</div>
+                <div style={{ color: '#555', fontSize: '1rem', fontWeight: 500 }}>Near City Centre, Hampankatta,<br/>Mangalore</div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="momo-panel" style={{ background: 'var(--bg-cream)', color: 'var(--text-dark-green)' }}>
-            <h3 className="title-display" style={{ fontSize: '2rem', marginBottom: '2rem', color: 'var(--text-dark-green)' }}>SEND A MESSAGE</h3>
-            <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <input type="text" placeholder="Your Name" />
-              <input type="tel" placeholder="Your Phone Number" />
-              <textarea placeholder="Your Message" rows="4"></textarea>
-              <button type="button" className="btn-primary" style={{ width: '100%', marginTop: '1rem' }}>Submit</button>
-            </form>
+      {/* 2. Shortcuts Section */}
+      <section style={{ backgroundColor: '#D95C32', padding: '6rem 2rem', color: '#fff', borderBottom: '2px solid #000' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ fontWeight: 700, letterSpacing: '2px', marginBottom: '1.5rem', fontSize: '0.9rem', color: '#fff' }}>
+            ▼ SHORTCUTS
+          </div>
+          <h2 className="title-display" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 0.9, marginBottom: '3rem', color: '#fff' }}>
+            LOOKING FOR THIS?
+          </h2>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            {[
+              { icon: '🎟️', title: 'BOOKINGS +\nRATES.', desc: 'Packages, group rates, what\'s included.' },
+              { icon: '✨', title: 'ADD-ONS +\nEXTRAS.', desc: 'Fog entry, candles, luxury decor.' },
+              { icon: '📍', title: 'HOURS +\nPARKING.', desc: 'Opening times, parking availability.' }
+            ].map((card, i) => (
+              <div key={i} style={{ backgroundColor: '#fff', color: '#000', border: '4px solid #000', padding: '2rem', display: 'flex', flexDirection: 'column', position: 'relative', minHeight: '250px', boxShadow: '8px 8px 0px #000', cursor: 'pointer' }} className="shortcut-card">
+                <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{card.icon}</div>
+                <div style={{ position: 'absolute', top: '2rem', right: '2rem', fontSize: '1.5rem' }}>→</div>
+                <h3 className="title-display" style={{ fontSize: '2rem', lineHeight: 1.1, marginBottom: '1rem', whiteSpace: 'pre-line' }}>{card.title}</h3>
+                <p style={{ fontSize: '1.1rem', fontWeight: 500, color: '#444', marginTop: 'auto' }}>{card.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* 3. Most Asked Section */}
+      <section className="dotted-bg" style={{ backgroundColor: '#BDE0EE', padding: '6rem 2rem', borderBottom: '2px solid #000' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{ fontWeight: 700, letterSpacing: '2px', marginBottom: '1.5rem', fontSize: '0.9rem', color: '#B81387' }}>
+            ♥ MOST ASKED
+          </div>
+          <h2 className="title-display" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 0.9, marginBottom: '3rem', color: '#000' }}>
+            THE COMMON ONES.
+          </h2>
+
+          <div style={{ backgroundColor: '#fff', border: '4px solid #000', padding: '1rem 3rem' }}>
+            {[
+              { q: 'WHAT ARE YOUR HOURS?', a: 'Open every day. 10AM–10PM.' },
+              { q: 'WHERE DO I PARK?', a: 'Parking is available in the complex.' },
+              { q: 'ARE DEPOSITS REFUNDABLE?', a: 'Deposits are non-refundable but can be rescheduled up to 48 hours before your visit.' },
+              { q: 'IS THE VENUE ACCESSIBLE?', a: 'Yes. Wheelchair access throughout, seating in every main area.' },
+              { q: 'DO YOU HOST SURPRISE PARTIES?', a: 'Yes. We specialize in them. Visit our events page and reach out to us so we can assist you.' }
+            ].map((faq, i) => (
+              <div key={i} style={{ borderBottom: i === 4 ? 'none' : '2px solid #EEE', padding: '2rem 0' }}>
+                <h3 className="title-display" style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#000' }}>{faq.q}</h3>
+                <p style={{ fontSize: '1.1rem', fontWeight: 500, color: '#333' }}>{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Form Section */}
+      <section style={{ backgroundColor: 'var(--bg-cream, #F8F6F0)', padding: '6rem 2rem 8rem' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{ fontWeight: 700, letterSpacing: '2px', marginBottom: '1.5rem', fontSize: '0.9rem', color: '#B81387' }}>
+            ♥ EVERYTHING ELSE.
+          </div>
+          <h2 className="title-display" style={{ fontSize: 'clamp(3rem, 7vw, 5rem)', lineHeight: 0.9, marginBottom: '1.5rem', color: '#000' }}>
+            SOMETHING ELSE ON<br/>YOUR MIND.
+          </h2>
+          <p style={{ fontSize: '1.3rem', fontWeight: 500, fontStyle: 'italic', color: '#555', marginBottom: '3rem' }}>
+            Pick a category. We'll point you to a faster path if there is one.
+          </p>
+
+          <div style={{ border: '4px solid #000', padding: '3rem', backgroundColor: '#fff' }}>
+            <div style={{ marginBottom: '2rem' }}>
+              <label style={{ display: 'block', fontWeight: 700, marginBottom: '1rem', fontSize: '1.1rem', color: '#000' }}>Category <span style={{ color: 'red' }}>*</span></label>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+                {['GENERAL', 'BOOKING ISSUE', 'PARTNERSHIP / VENDOR', 'OTHER'].map(cat => (
+                  <button 
+                    key={cat}
+                    onClick={() => setCategory(cat)}
+                    style={{ 
+                      padding: '10px 20px', 
+                      backgroundColor: category === cat ? '#000' : '#fff', 
+                      color: category === cat ? '#fff' : '#000', 
+                      border: '2px solid #000', 
+                      fontWeight: 700, 
+                      fontSize: '0.9rem', 
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <label style={{ display: 'block', fontWeight: 700, marginBottom: '0.5rem', fontSize: '1.1rem', color: '#000' }}>Name <span style={{ color: 'red' }}>*</span></label>
+              <input type="text" style={{ width: '100%', padding: '15px', border: '2px solid #000', fontSize: '1.1rem', backgroundColor: '#F8F6F0', color: '#000' }} />
+            </div>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <label style={{ display: 'block', fontWeight: 700, marginBottom: '0.5rem', fontSize: '1.1rem', color: '#000' }}>Email <span style={{ color: 'red' }}>*</span></label>
+              <input type="email" style={{ width: '100%', padding: '15px', border: '2px solid #000', fontSize: '1.1rem', backgroundColor: '#F8F6F0', color: '#000' }} />
+            </div>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <label style={{ display: 'block', fontWeight: 700, marginBottom: '0.5rem', fontSize: '1.1rem', color: '#000' }}>Message <span style={{ color: 'red' }}>*</span></label>
+              <textarea rows="5" style={{ width: '100%', padding: '15px', border: '2px solid #000', fontSize: '1.1rem', backgroundColor: '#F8F6F0', resize: 'vertical', color: '#000' }}></textarea>
+            </div>
+
+            <button style={{ backgroundColor: '#B81387', color: '#fff', border: '2px solid #000', padding: '15px 40px', fontSize: '1.2rem', fontWeight: 800, cursor: 'pointer', display: 'inline-block', boxShadow: '4px 4px 0px #000' }}>
+              SUBMIT
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
   );
 };
 
