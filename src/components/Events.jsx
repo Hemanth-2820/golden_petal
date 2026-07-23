@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Events = () => {
   const [selectedPath, setSelectedPath] = useState(null);
@@ -12,7 +12,14 @@ const Events = () => {
     slot: ''
   });
 
+  const navigate = useNavigate();
+
   const handlePathClick = (path) => {
+    if (!localStorage.getItem('user')) {
+      navigate('/login');
+      return;
+    }
+    
     setSelectedPath(path);
     setBookingStep(1);
     // Scroll to booking section smoothly
@@ -100,7 +107,7 @@ const Events = () => {
       </section>
 
       {/* 2. Pick Your Path */}
-      <section style={{ backgroundColor: 'var(--bg-white)', padding: '8rem 2rem', color: '#000000', borderBottom: '4px solid var(--text-black)' }}>
+      <section id="pick-your-event" style={{ backgroundColor: 'var(--bg-white)', padding: '8rem 2rem', color: '#000000', borderBottom: '4px solid var(--text-black)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ fontWeight: 700, letterSpacing: '2px', marginBottom: '3rem', fontSize: '1rem', opacity: 0.6, textTransform: 'uppercase' }}>
             ▼ CELEBRATE WITH US
@@ -110,19 +117,19 @@ const Events = () => {
             PICK YOUR EVENT.
           </h2>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
             
             {Object.keys(eventData).map(eventKey => (
-              <div key={eventKey} className="brutalist-card" onClick={() => handlePathClick(eventKey)} style={{ backgroundColor: '#000000', color: '#FFFFFF', padding: '3rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', border: '4px solid #D4AF37' }}>
+              <div key={eventKey} className="brutalist-card" onClick={() => handlePathClick(eventKey)} style={{ backgroundColor: '#000000', color: '#FFFFFF', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', border: '4px solid #D4AF37' }}>
                 <div>
-                  <h3 className="title-display mobile-text-clamp" style={{ fontSize: '2.5rem', color: '#D4AF37', marginBottom: '1rem' }}>
+                  <h3 className="title-display mobile-text-clamp" style={{ fontSize: '2rem', color: '#D4AF37', marginBottom: '0.5rem' }}>
                     {eventData[eventKey].title}
                   </h3>
-                  <p style={{ fontSize: '1.2rem', fontWeight: 500, marginBottom: '2rem' }}>
+                  <p style={{ fontSize: '1rem', fontWeight: 500, marginBottom: '1.5rem' }}>
                     {eventData[eventKey].desc}
                   </p>
                 </div>
-                <div style={{ textAlign: 'right', fontSize: '2rem', marginTop: '2rem', color: '#D4AF37' }}>→</div>
+                <div style={{ textAlign: 'right', fontSize: '1.5rem', marginTop: '1rem', color: '#D4AF37' }}>→</div>
               </div>
             ))}
 

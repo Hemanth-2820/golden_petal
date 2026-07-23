@@ -28,7 +28,24 @@ const Navbar = () => {
           <Link to="/testimonials" className="nav-link">TESTIMONIALS</Link>
           <Link to="/gallery" className="nav-link">GALLERY</Link>
           <Link to="/contact" className="nav-link" style={{ fontWeight: 700 }}>CONTACT</Link>
-          <Link to="/events" style={{ backgroundColor: '#D4AF37', color: 'white', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid white', display: 'flex', alignItems: 'center' }}>BOOK</Link>
+          
+          {localStorage.getItem('user') ? (
+            <>
+              {JSON.parse(localStorage.getItem('user')).role === 'admin' && (
+                <Link to="/admin" style={{ backgroundColor: '#FFF', color: '#000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid #D4AF37', display: 'flex', alignItems: 'center' }}>ADMIN DASHBOARD</Link>
+              )}
+              <Link to="/my-bookings" style={{ fontWeight: 700, color: '#D4AF37', textDecoration: 'none' }}>MY ACCOUNT</Link>
+            </>
+          ) : (
+            <Link to="/login" style={{ fontWeight: 700, color: '#FFF', textDecoration: 'none' }}>LOGIN</Link>
+          )}
+
+          <Link to="/events" className="flash-book-btn" onClick={() => {
+            setTimeout(() => {
+              const el = document.getElementById('pick-your-event');
+              if(el) el.scrollIntoView({behavior: 'smooth'});
+            }, 100);
+          }} style={{ backgroundColor: '#D4AF37', color: '#000000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid white', display: 'flex', alignItems: 'center' }}>BOOK</Link>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -55,7 +72,25 @@ const Navbar = () => {
         <Link to="/testimonials" className="nav-link" onClick={() => setIsMenuOpen(false)}>TESTIMONIALS</Link>
         <Link to="/gallery" className="nav-link" onClick={() => setIsMenuOpen(false)}>GALLERY</Link>
         <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)} style={{ fontWeight: 700 }}>CONTACT</Link>
-        <Link to="/events" onClick={() => setIsMenuOpen(false)} style={{ backgroundColor: '#D4AF37', color: 'white', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid white', display: 'flex', alignItems: 'center' }}>BOOK</Link>
+        
+        {localStorage.getItem('user') ? (
+          <>
+            {JSON.parse(localStorage.getItem('user')).role === 'admin' && (
+              <Link to="/admin" onClick={() => setIsMenuOpen(false)} style={{ backgroundColor: '#FFF', color: '#000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid #D4AF37', display: 'flex', alignItems: 'center' }}>ADMIN DASHBOARD</Link>
+            )}
+            <Link to="/my-bookings" onClick={() => setIsMenuOpen(false)} style={{ fontWeight: 700, color: '#D4AF37', textDecoration: 'none' }}>MY ACCOUNT</Link>
+          </>
+        ) : (
+          <Link to="/login" onClick={() => setIsMenuOpen(false)} style={{ fontWeight: 700, color: '#FFF', textDecoration: 'none' }}>LOGIN</Link>
+        )}
+
+        <Link to="/events" className="flash-book-btn" onClick={() => {
+          setIsMenuOpen(false);
+          setTimeout(() => {
+            const el = document.getElementById('pick-your-event');
+            if(el) el.scrollIntoView({behavior: 'smooth'});
+          }, 100);
+        }} style={{ backgroundColor: '#D4AF37', color: '#000000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid white', display: 'flex', alignItems: 'center' }}>BOOK</Link>
       </div>
 
       <style>{`
@@ -68,6 +103,14 @@ const Navbar = () => {
         }
         .nav-link:hover {
           color: #D4AF37;
+        }
+        @keyframes flashEffect {
+          0% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(1.05); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+        .flash-book-btn {
+          animation: flashEffect 1.5s infinite ease-in-out;
         }
         @media (min-width: 1024px) {
           .desktop-menu {

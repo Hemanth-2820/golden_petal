@@ -16,6 +16,13 @@ import EventCategories from './components/EventCategories';
 import PerfectSetup from './components/PerfectSetup';
 import ContactUs from './components/ContactUs';
 import BookNow from './components/BookNow';
+import Login from './components/Login';
+import Register from './components/Register';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
+import Booking from './components/Booking';
+import MyBookings from './components/MyBookings';
+import AdminDashboard from './components/AdminDashboard';
 import './index.css';
 
 function App() {
@@ -50,6 +57,13 @@ function App() {
               <BookNow />
             </>
           } />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="booking" element={<Booking />} />
+          <Route path="my-bookings" element={<MyBookings />} />
+          <Route path="admin" element={<AdminDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
