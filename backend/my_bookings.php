@@ -23,7 +23,9 @@ if (empty($user_id)) {
 try {
     // Fetch bookings for this user and JOIN with services to get the service name
     $stmt = $pdo->prepare("
-        SELECT b.id AS booking_id, b.booking_date, b.duration_hours, b.total_price, b.status, s.name AS service_name 
+        SELECT b.id AS booking_id, b.booking_date, b.duration_hours, b.total_price, b.status, 
+            b.addons,
+            s.name AS service_name 
         FROM bookings b
         JOIN services s ON b.service_id = s.id
         WHERE b.user_id = ?

@@ -46,7 +46,7 @@ const MyBookings = () => {
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '3rem' }}>
           <button 
-            onClick={() => navigate('/booking')}
+            onClick={() => navigate('/events')}
             style={{ backgroundColor: '#D4AF37', color: '#FFF', border: '3px solid #000', padding: '10px 20px', fontSize: '1.1rem', fontWeight: 800, cursor: 'pointer', transition: 'all 0.2s', textTransform: 'uppercase' }}
           >
             BOOK AN EVENT →
@@ -71,7 +71,7 @@ const MyBookings = () => {
           <div style={{ border: '4px solid #000', padding: '3rem', textAlign: 'center', backgroundColor: '#FFF', boxShadow: '8px 8px 0px #000' }}>
             <p style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: '2rem' }}>You don't have any bookings yet.</p>
             <button 
-              onClick={() => navigate('/booking')}
+              onClick={() => navigate('/events')}
               style={{ backgroundColor: '#D4AF37', color: '#FFF', border: '3px solid #000', padding: '15px 30px', fontSize: '1.2rem', fontWeight: 800, cursor: 'pointer', transition: 'all 0.2s', textTransform: 'uppercase' }}
             >
               BOOK NOW →
@@ -112,6 +112,12 @@ const MyBookings = () => {
                         <p style={{ fontSize: '0.9rem', textTransform: 'uppercase', fontWeight: 800, color: '#666', marginBottom: '0.2rem' }}>Total Price</p>
                         <p style={{ fontSize: '1.2rem', fontWeight: 800, color: '#D4AF37' }}>${parseFloat(booking.total_price).toFixed(2)}</p>
                       </div>
+                      {booking.addons && (
+                        <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingTop: '1rem', borderTop: '2px dashed #EEE' }}>
+                          <p style={{ fontSize: '0.9rem', textTransform: 'uppercase', fontWeight: 800, color: '#666', marginBottom: '0.5rem' }}>Add-ons Selected</p>
+                          <p style={{ fontSize: '1.1rem', fontWeight: 600 }}>{booking.addons}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

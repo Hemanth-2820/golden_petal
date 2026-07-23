@@ -54,6 +54,50 @@ try {
     $updateStmt = $pdo->prepare("UPDATE bookings SET status = ? WHERE id = ?");
     $updateStmt->execute([$new_status, $booking_id]);
 
+    // Send confirmation email to customer if status is confirmed
+    if ($new_status === 'confirmed') {
+        $detailStmt = $pdo->prepare("
+            SELECT b.*, u.email, u.name as customer_name, s.name as service_name 
+            FROM bookings b
+            JOIN users u ON b.user_id = u.id
+            JOIN services s ON b.service_id = s.id
+            WHERE b.id = ?
+        ");
+        $detailStmt->execute([$booking_id]);
+        $b = $detailStmt->fetch();
+
+        if ($b && !empty($b['email'])) {
+            $customerEmail = $b['email'];
+            $customerName = $b['customer_name'];
+            $serviceName = $b['service_name'];
+            $dateObj = new DateTime($b['booking_date']);
+            $prettyDate = $dateObj->format('F j, Y \a\t g:i A');
+
+            $subject = "Booking Confirmed! - Golden Petal";
+            $html = "
+            <div style='font-family: sans-serif; color: #000; max-width: 600px; margin: 0 auto; border: 4px solid #D4AF37;'>
+                <div style='background-color: #000; padding: 20px; text-align: center;'>
+                    <h1 style='color: #D4AF37; margin: 0;'>GOLDEN PETAL</h1>
+                </div>
+                <div style='padding: 20px;'>
+                    <h2 style='color: #000;'>Payment Verified & Booking Confirmed!</h2>
+                    <p>Hi " . htmlspecialchars($customerName) . ",</p>
+                    <p>Great news! We have successfully received and verified your payment. Your booking is now officially <strong>CONFIRMED</strong>.</p>
+                    <hr style='border: 1px solid #D4AF37; margin: 20px 0;' />
+                    <p><strong>Service:</strong> $serviceName</p>
+                    <p><strong>Date & Time:</strong> $prettyDate</p>
+                    <p><strong>Duration:</strong> {$b['duration_hours']} Hour(s)</p>
+                    <p><strong>Guests:</strong> {$b['guests']}</p>
+                    <hr style='border: 1px solid #D4AF37; margin: 20px 0;' />
+                    <p style='font-size: 16px; font-weight: bold;'>We can't wait to host your celebration!</p>
+                </div>
+            </div>";
+            
+            require_once 'mailer.php';
+            sendEmail($customerEmail, $subject, $html);
+        }
+    }
+
     echo json_encode([
         "status" => "success",
         "message" => "Booking status updated to " . htmlspecialchars($new_status)

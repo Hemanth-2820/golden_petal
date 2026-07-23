@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 $host = 'localhost';
 $dbname = 'nsgsowg8_golden_db'; // Your cPanel database name
 $username = 'nsgsowg8_golden'; // Note: Replace with exact Database Username if different
-$password = 'goldenpetal';     // Your Database password
+$password = 'goldenpetal@2026';     // Your Database password
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);

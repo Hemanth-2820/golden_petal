@@ -18,40 +18,62 @@ if (!$service_id || !$date) {
     exit;
 }
 
-// Business hours: 10 AM to 7 PM
+// Business hours: 10 AM to 10 PM
 $startHour = 10;
-$endHour = 19; // 7 PM
+$endHour = 22; // 10 PM
 
-// The latest a booking can start is (EndHour - duration_hours)
-$lastPossibleStartHour = $endHour - $duration_hours;
+// Fetch all bookings for this service on this date
+$stmt = $pdo->prepare("
+    SELECT booking_date, duration_hours 
+    FROM bookings 
+    WHERE service_id = ? 
+    AND status != 'cancelled' 
+    AND DATE(booking_date) = ?
+");
+$stmt->execute([$service_id, $date]);
+$existing_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $available_slots = [];
+$gap_minutes = 30;
 
-// Prepare the overlap check statement
-// Returns true if there is an overlap
-$overlapStmt = $pdo->prepare("
-    SELECT id FROM bookings 
-    WHERE service_id = ? 
-    AND status != 'cancelled'
-    AND booking_date < DATE_ADD(?, INTERVAL ? HOUR)
-    AND DATE_ADD(booking_date, INTERVAL duration_hours HOUR) > ?
-");
+// Check every 30 minutes
+for ($h = $startHour; $h < $endHour; $h++) {
+    foreach ([0, 30] as $m) {
+        $slot_start_time = strtotime(sprintf("%s %02d:%02d:00", $date, $h, $m));
+        $slot_end_time = $slot_start_time + ($duration_hours * 3600);
 
-for ($h = $startHour; $h <= $lastPossibleStartHour; $h++) {
-    // Format the time as HH:00:00
-    $timeString = sprintf("%02d:00:00", $h);
-    $slotDateTime = $date . ' ' . $timeString;
+        // If the slot ends after business hours, don't allow it
+        if ($slot_end_time > strtotime(sprintf("%s %02d:00:00", $date, $endHour))) {
+            continue;
+        }
 
-    // Check for overlaps for this specific start time and duration
-    $overlapStmt->execute([$service_id, $slotDateTime, $duration_hours, $slotDateTime]);
-    
-    if (!$overlapStmt->fetch()) {
-        // No overlap found, this slot is available
-        $available_slots[] = [
-            "time" => $timeString,
-            "display" => date("h:i A", strtotime($slotDateTime)) . " - " . date("h:i A", strtotime($slotDateTime) + ($duration_hours * 3600)),
-            "datetime" => $slotDateTime
-        ];
+        $conflict = false;
+        foreach ($existing_bookings as $b) {
+            $b_start = strtotime($b['booking_date']);
+            $b_end = $b_start + ($b['duration_hours'] * 3600);
+            
+            // The event blocks time from its start to its end + 30 mins gap
+            $b_blocked_start = $b_start;
+            $b_blocked_end = $b_end + ($gap_minutes * 60);
+
+            $slot_blocked_start = $slot_start_time;
+            $slot_blocked_end = $slot_end_time + ($gap_minutes * 60);
+
+            // Overlap condition: max(start1, start2) < min(end1, end2)
+            if (max($slot_blocked_start, $b_blocked_start) < min($slot_blocked_end, $b_blocked_end)) {
+                $conflict = true;
+                break;
+            }
+        }
+
+        if (!$conflict) {
+            $timeString = sprintf("%02d:%02d:00", $h, $m);
+            $available_slots[] = [
+                "time" => $timeString,
+                "display" => date("h:i A", $slot_start_time) . " - " . date("h:i A", $slot_end_time),
+                "datetime" => date("Y-m-d H:i:s", $slot_start_time)
+            ];
+        }
     }
 }
 

@@ -20,6 +20,11 @@ $user_id = $input['user_id'] ?? null;
 $service_id = $input['service_id'] ?? null;
 $booking_date = $input['booking_date'] ?? ''; // Expected format: 'YYYY-MM-DD HH:MM:SS'
 $duration_hours = (int)($input['duration_hours'] ?? 1);
+$addons = $input['addons'] ?? '';
+$customer_phone = $input['customer_phone'] ?? '';
+$guests = (int)($input['guests'] ?? 1);
+$payment_screenshot = $input['payment_screenshot'] ?? '';
+$total_price_from_frontend = isset($input['total_price']) ? (float)$input['total_price'] : null;
 
 // Basic validation
 if (empty($user_id) || empty($service_id) || empty($booking_date)) {
@@ -38,7 +43,8 @@ if (!$service) {
     exit;
 }
 
-$total_price = $service['price'] * $duration_hours;
+// If frontend provides total_price (base + addons), use it, otherwise use fallback calculation
+$total_price = $total_price_from_frontend !== null ? $total_price_from_frontend : ($service['price'] * $duration_hours);
 
 // Check for overlapping bookings (if existing start < new end AND existing end > new start)
 $overlapStmt = $pdo->prepare("
@@ -58,8 +64,8 @@ if ($overlapStmt->fetch()) {
 
 // Insert booking into database
 try {
-    $insertStmt = $pdo->prepare("INSERT INTO bookings (user_id, service_id, booking_date, duration_hours, total_price, status) VALUES (?, ?, ?, ?, ?, 'confirmed')");
-    $insertStmt->execute([$user_id, $service_id, $booking_date, $duration_hours, $total_price]);
+    $insertStmt = $pdo->prepare("INSERT INTO bookings (user_id, service_id, booking_date, duration_hours, total_price, status, addons, customer_phone, guests, payment_screenshot) VALUES (?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?)");
+    $insertStmt->execute([$user_id, $service_id, $booking_date, $duration_hours, $total_price, $addons, $customer_phone, $guests, $payment_screenshot]);
     
     $bookingId = $pdo->lastInsertId();
     
@@ -93,6 +99,7 @@ try {
                 <p><strong>Date & Time:</strong> $prettyDate</p>
                 <p><strong>Duration:</strong> $duration_hours Hour(s)</p>
                 <p><strong>Total Price:</strong> $" . number_format($total_price, 2) . "</p>
+                <p><strong>Status:</strong> Pending Approval</p>
                 <hr style='border: 1px solid #D4AF37; margin: 20px 0;' />
                 <p style='font-size: 16px;'>We look forward to seeing you!</p>
             </div>
@@ -115,7 +122,11 @@ try {
                 <p><strong>Service:</strong> $serviceName</p>
                 <p><strong>Date & Time:</strong> $prettyDate</p>
                 <p><strong>Duration:</strong> $duration_hours Hour(s)</p>
+                <p><strong>Phone:</strong> " . htmlspecialchars($customer_phone) . "</p>
+                <p><strong>Guests:</strong> $guests</p>
+                <p><strong>Add-ons:</strong> " . ($addons ? htmlspecialchars($addons) : 'None') . "</p>
                 <p><strong>Total Price:</strong> $" . number_format($total_price, 2) . "</p>
+                <p><strong>Payment Screenshot:</strong> <a href='https://golden-petal.in/$payment_screenshot'>View Screenshot</a></p>
             </div>
         </div>";
         sendEmail($adminEmail, $adminSubject, $adminHtml);

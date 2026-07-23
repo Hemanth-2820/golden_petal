@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GoldParticles from './GoldParticles';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isAdminPage = location.pathname === '/admin';
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('booking_token');
+    navigate('/login');
+  };
 
   return (
     <nav style={{
@@ -22,30 +31,39 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{ display: 'none', gap: '2rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <Link to="/about" className="nav-link">ABOUT</Link>
-          <Link to="/events" className="nav-link">EVENTS</Link>
-          <Link to="/addons" className="nav-link">ADD-ONS</Link>
-          <Link to="/testimonials" className="nav-link">TESTIMONIALS</Link>
-          <Link to="/gallery" className="nav-link">GALLERY</Link>
-          <Link to="/contact" className="nav-link" style={{ fontWeight: 700 }}>CONTACT</Link>
-          
-          {localStorage.getItem('user') ? (
+          {isAdminPage ? (
             <>
-              {JSON.parse(localStorage.getItem('user')).role === 'admin' && (
-                <Link to="/admin" style={{ backgroundColor: '#FFF', color: '#000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid #D4AF37', display: 'flex', alignItems: 'center' }}>ADMIN DASHBOARD</Link>
-              )}
-              <Link to="/my-bookings" style={{ fontWeight: 700, color: '#D4AF37', textDecoration: 'none' }}>MY ACCOUNT</Link>
+              <Link to="/events" className="nav-link" style={{ fontWeight: 700 }}>RETURN TO SITE</Link>
+              <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: '#FFF', fontWeight: 700, fontSize: '1.1rem', fontFamily: 'Oswald', cursor: 'pointer' }}>LOGOUT</button>
             </>
           ) : (
-            <Link to="/login" style={{ fontWeight: 700, color: '#FFF', textDecoration: 'none' }}>LOGIN</Link>
-          )}
+            <>
+              <Link to="/about" className="nav-link">ABOUT</Link>
+              <Link to="/events" className="nav-link">EVENTS</Link>
+              <Link to="/addons" className="nav-link">ADD-ONS</Link>
+              <Link to="/testimonials" className="nav-link">TESTIMONIALS</Link>
+              <Link to="/gallery" className="nav-link">GALLERY</Link>
+              <Link to="/contact" className="nav-link" style={{ fontWeight: 700 }}>CONTACT</Link>
+              
+              {localStorage.getItem('user') ? (
+                <>
+                  {JSON.parse(localStorage.getItem('user')).role === 'admin' && (
+                    <Link to="/admin" style={{ backgroundColor: '#FFF', color: '#000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid #D4AF37', display: 'flex', alignItems: 'center' }}>ADMIN DASHBOARD</Link>
+                  )}
+                  <Link to="/my-bookings" style={{ fontWeight: 700, color: '#D4AF37', textDecoration: 'none' }}>MY ACCOUNT</Link>
+                </>
+              ) : (
+                <Link to="/login" style={{ fontWeight: 700, color: '#FFF', textDecoration: 'none' }}>LOGIN</Link>
+              )}
 
-          <Link to="/events" className="flash-book-btn" onClick={() => {
-            setTimeout(() => {
-              const el = document.getElementById('pick-your-event');
-              if(el) el.scrollIntoView({behavior: 'smooth'});
-            }, 100);
-          }} style={{ backgroundColor: '#D4AF37', color: '#000000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid white', display: 'flex', alignItems: 'center' }}>BOOK</Link>
+              <Link to="/events" className="flash-book-btn" onClick={() => {
+                setTimeout(() => {
+                  const el = document.getElementById('pick-your-event');
+                  if(el) el.scrollIntoView({behavior: 'smooth'});
+                }, 100);
+              }} style={{ backgroundColor: '#D4AF37', color: '#000000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid white', display: 'flex', alignItems: 'center' }}>BOOK</Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -66,31 +84,40 @@ const Navbar = () => {
         maxHeight: isMenuOpen ? '500px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease',
         boxShadow: '0 10px 20px rgba(0,0,0,0.5)'
       }}>
-        <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>ABOUT</Link>
-        <Link to="/events" className="nav-link" onClick={() => setIsMenuOpen(false)}>EVENTS</Link>
-        <Link to="/addons" className="nav-link" onClick={() => setIsMenuOpen(false)}>ADD-ONS</Link>
-        <Link to="/testimonials" className="nav-link" onClick={() => setIsMenuOpen(false)}>TESTIMONIALS</Link>
-        <Link to="/gallery" className="nav-link" onClick={() => setIsMenuOpen(false)}>GALLERY</Link>
-        <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)} style={{ fontWeight: 700 }}>CONTACT</Link>
-        
-        {localStorage.getItem('user') ? (
+        {isAdminPage ? (
           <>
-            {JSON.parse(localStorage.getItem('user')).role === 'admin' && (
-              <Link to="/admin" onClick={() => setIsMenuOpen(false)} style={{ backgroundColor: '#FFF', color: '#000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid #D4AF37', display: 'flex', alignItems: 'center' }}>ADMIN DASHBOARD</Link>
-            )}
-            <Link to="/my-bookings" onClick={() => setIsMenuOpen(false)} style={{ fontWeight: 700, color: '#D4AF37', textDecoration: 'none' }}>MY ACCOUNT</Link>
+            <Link to="/events" className="nav-link" onClick={() => setIsMenuOpen(false)}>RETURN TO SITE</Link>
+            <button onClick={() => { handleLogout(); setIsMenuOpen(false); }} style={{ background: 'none', border: 'none', color: '#FFF', fontWeight: 700, fontSize: '1.1rem', fontFamily: 'Oswald', cursor: 'pointer' }}>LOGOUT</button>
           </>
         ) : (
-          <Link to="/login" onClick={() => setIsMenuOpen(false)} style={{ fontWeight: 700, color: '#FFF', textDecoration: 'none' }}>LOGIN</Link>
-        )}
+          <>
+            <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>ABOUT</Link>
+            <Link to="/events" className="nav-link" onClick={() => setIsMenuOpen(false)}>EVENTS</Link>
+            <Link to="/addons" className="nav-link" onClick={() => setIsMenuOpen(false)}>ADD-ONS</Link>
+            <Link to="/testimonials" className="nav-link" onClick={() => setIsMenuOpen(false)}>TESTIMONIALS</Link>
+            <Link to="/gallery" className="nav-link" onClick={() => setIsMenuOpen(false)}>GALLERY</Link>
+            <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)} style={{ fontWeight: 700 }}>CONTACT</Link>
+            
+            {localStorage.getItem('user') ? (
+              <>
+                {JSON.parse(localStorage.getItem('user')).role === 'admin' && (
+                  <Link to="/admin" onClick={() => setIsMenuOpen(false)} style={{ backgroundColor: '#FFF', color: '#000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid #D4AF37', display: 'flex', alignItems: 'center' }}>ADMIN DASHBOARD</Link>
+                )}
+                <Link to="/my-bookings" onClick={() => setIsMenuOpen(false)} style={{ fontWeight: 700, color: '#D4AF37', textDecoration: 'none' }}>MY ACCOUNT</Link>
+              </>
+            ) : (
+              <Link to="/login" onClick={() => setIsMenuOpen(false)} style={{ fontWeight: 700, color: '#FFF', textDecoration: 'none' }}>LOGIN</Link>
+            )}
 
-        <Link to="/events" className="flash-book-btn" onClick={() => {
-          setIsMenuOpen(false);
-          setTimeout(() => {
-            const el = document.getElementById('pick-your-event');
-            if(el) el.scrollIntoView({behavior: 'smooth'});
-          }, 100);
-        }} style={{ backgroundColor: '#D4AF37', color: '#000000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid white', display: 'flex', alignItems: 'center' }}>BOOK</Link>
+            <Link to="/events" className="flash-book-btn" onClick={() => {
+              setIsMenuOpen(false);
+              setTimeout(() => {
+                const el = document.getElementById('pick-your-event');
+                if(el) el.scrollIntoView({behavior: 'smooth'});
+              }, 100);
+            }} style={{ backgroundColor: '#D4AF37', color: '#000000', padding: '10px 20px', fontWeight: 900, textDecoration: 'none', border: '3px solid white', display: 'flex', alignItems: 'center' }}>BOOK</Link>
+          </>
+        )}
       </div>
 
       <style>{`
