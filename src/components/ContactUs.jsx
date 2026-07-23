@@ -24,7 +24,6 @@ const ContactUs = () => {
             <div>
               <div style={{ fontWeight: 700, letterSpacing: '2px', fontSize: '0.8rem', color: '#000', marginBottom: '0.5rem' }}>EMAIL US</div>
               <div style={{ fontSize: '1.2rem', fontWeight: 900, textDecoration: 'underline', color: '#000', marginBottom: '0.5rem' }}>goldencelebration2026@gmail.com</div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 900, textDecoration: 'underline', color: '#000' }}>meghamahesh@2020</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
               <div style={{ backgroundColor: '#D4AF37', border: '2px solid #000', padding: '4px 10px', fontSize: '0.7rem', fontWeight: 900, display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#000' }}>
