@@ -2,12 +2,12 @@ import React from 'react';
 
 const Addons = () => {
   const addons = [
-    { name: 'PHOTO OR VIDEO', price: 'Rs. 500/- (With Editing 15 mins)', desc: 'Capture every unforgettable moment professionally to cherish forever.', img: '/new_addon_video.jpg' },
+    { name: 'PHOTO OR VIDEO', price: 'Price as per order', desc: 'Capture every unforgettable moment professionally to cherish forever.', img: '/new_addon_video.jpg' },
     { name: 'LUXURY BOUQUET', price: 'Rs. 800/- (10 Roses)', desc: 'A premium, hand-crafted bouquet featuring beautiful roses for your loved one.', img: '/new_addon_bouquet.jpg' },
-    { name: 'CANDLE PATH', price: 'Rs. 450/-', desc: 'A romantic, glowing pathway lined with candles and scattered flower petals.', img: '/new_addon_candles.jpg' },
+    { name: 'CANDLE PATH', price: 'Rs. 500/-', desc: 'A romantic, glowing pathway lined with candles and scattered flower petals.', img: '/new_addon_candles.jpg' },
     { name: 'BUBBLE BLISS', price: 'Rs. 400/-', desc: 'Add a joyful, magical atmosphere with floating bubbles for your celebration.', img: '/new_addon_bubbles.jpg' },
     { name: 'WELCOME BOARD', price: 'Rs. 700/-', desc: 'An elegant, customized welcome board to greet your special guests.', img: '/floral_welcome_board.png' },
-    { name: 'FOG ENTRY', price: 'Rs. 450/- (Single Pot)', desc: 'Make a grand and magical entrance with our elegant fog effect.', img: '/addon_fog_real.jpg' },
+    { name: 'FOG ENTRY', price: 'Rs. 850/-', desc: 'Make a grand and magical entrance with our elegant fog effect.', img: '/addon_fog_real.jpg' },
     { name: 'GIFT HAMPER', price: 'Cost as per order', desc: 'Beautifully curated gift hampers to make your loved ones feel special. (Pre-order only)', img: '/addon_hamper.jpg' },
     { name: 'CAKE & CUP CAKES', price: 'Price as per order', desc: 'Delicious customized cakes and cupcakes tailored to your celebration theme.', img: '/addon_cake.jpg' },
     { name: 'ARTIFICIAL BOUQUET', price: 'Rs. 350/- per hr (Rental)', desc: 'A stunning artificial flower bouquet available for photoshoot rental.', img: '/addon_artificial_bouquet.jpg' },

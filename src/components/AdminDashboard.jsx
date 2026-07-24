@@ -8,6 +8,7 @@ const AdminDashboard = () => {
   const [user, setUser] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [dateFilter, setDateFilter] = useState('all');
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const navigate = useNavigate();
 
@@ -86,7 +87,22 @@ const AdminDashboard = () => {
                           (b.customer_email?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
                           b.booking_id.toString().includes(searchQuery);
     const matchesStatus = statusFilter === 'all' || b.status === statusFilter;
-    return matchesSearch && matchesStatus;
+    
+    const bookingDate = new Date(b.booking_date);
+    bookingDate.setHours(0, 0, 0, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let matchesDate = true;
+    if (dateFilter === 'today') {
+      matchesDate = bookingDate.getTime() === today.getTime();
+    } else if (dateFilter === 'upcoming') {
+      matchesDate = bookingDate.getTime() > today.getTime();
+    } else if (dateFilter === 'past') {
+      matchesDate = bookingDate.getTime() < today.getTime();
+    }
+
+    return matchesSearch && matchesStatus && matchesDate;
   });
 
   return (
@@ -101,7 +117,7 @@ const AdminDashboard = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
           <div style={{ border: '4px solid #000', backgroundColor: '#FFF', padding: '2rem', boxShadow: '8px 8px 0px #000' }}>
             <p style={{ fontSize: '1rem', fontWeight: 800, textTransform: 'uppercase', color: '#666', marginBottom: '0.5rem' }}>Total Revenue (Active)</p>
-            <p style={{ fontSize: '3rem', fontWeight: 900, color: '#D4AF37', lineHeight: 1 }}>${totalRevenue.toFixed(2)}</p>
+            <p style={{ fontSize: '3rem', fontWeight: 900, color: '#D4AF37', lineHeight: 1 }}>₹{totalRevenue.toFixed(2)}</p>
           </div>
           <div style={{ border: '4px solid #000', backgroundColor: '#FFF', padding: '2rem', boxShadow: '8px 8px 0px #000' }}>
             <p style={{ fontSize: '1rem', fontWeight: 800, textTransform: 'uppercase', color: '#666', marginBottom: '0.5rem' }}>Total Bookings</p>
@@ -141,6 +157,16 @@ const AdminDashboard = () => {
                 <option value="pending">PENDING</option>
                 <option value="confirmed">CONFIRMED</option>
                 <option value="cancelled">CANCELLED</option>
+              </select>
+              <select 
+                value={dateFilter}
+                onChange={(e) => setDateFilter(e.target.value)}
+                style={{ padding: '12px', border: '2px solid #000', fontSize: '1.1rem', fontWeight: 700, backgroundColor: '#FFF', minWidth: '200px' }}
+              >
+                <option value="all">ALL DATES</option>
+                <option value="today">TODAY'S BOOKINGS</option>
+                <option value="upcoming">UPCOMING BOOKINGS</option>
+                <option value="past">PAST BOOKINGS</option>
               </select>
             </div>
 
@@ -188,7 +214,7 @@ const AdminDashboard = () => {
                         <div style={{ fontSize: '0.85rem', color: '#666' }}>{formattedTime}</div>
                       </td>
                       <td style={{ padding: '15px', fontWeight: 600 }}>{booking.duration_hours} hr(s)</td>
-                      <td style={{ padding: '15px', fontWeight: 800, color: '#D4AF37' }}>${parseFloat(booking.total_price).toFixed(2)}</td>
+                      <td style={{ padding: '15px', fontWeight: 800, color: '#D4AF37' }}>₹{parseFloat(booking.total_price).toFixed(2)}</td>
                       <td style={{ padding: '15px' }}>
                         {booking.payment_screenshot ? (
                           <a href={`https://golden-petal.in/${booking.payment_screenshot}`} target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline', fontWeight: 600 }}>View Proof</a>

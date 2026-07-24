@@ -78,12 +78,12 @@ const Events = () => {
   };
 
   const availableAddons = [
-    { name: 'Photo or Video (15 mins Edit)', price: 500 },
+    { name: 'Photo or Video (15 mins Edit)', price: 0, suffix: '(Price as per order)' },
     { name: 'Luxury Bouquet (10 Roses)', price: 800 },
-    { name: 'Candle Path', price: 450 },
+    { name: 'Candle Path', price: 500 },
     { name: 'Bubble Bliss', price: 400 },
     { name: 'Welcome Board', price: 700 },
-    { name: 'Fog Entry (Single Pot)', price: 450 },
+    { name: 'Fog Entry', price: 850 },
     { name: 'Gift Hamper', price: 0, suffix: '(Cost as per order)' },
     { name: 'Cake & Cup Cakes', price: 0, suffix: '(Price as per order)' },
     { name: 'Artificial Bouquet (Rental)', price: 350 },

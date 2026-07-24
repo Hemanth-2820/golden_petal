@@ -5,6 +5,7 @@ const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,10 +16,11 @@ const MyBookings = () => {
         return;
       }
       
-      const user = JSON.parse(userString);
+      const parsedUser = JSON.parse(userString);
+      setUser(parsedUser);
 
       try {
-        const response = await fetch(`https://golden-petal.in/backend/my_bookings.php?user_id=${user.id}`);
+        const response = await fetch(`https://golden-petal.in/backend/my_bookings.php?user_id=${parsedUser.id}`);
         const data = await response.json();
 
         if (response.ok && data.status === 'success') {
@@ -40,8 +42,8 @@ const MyBookings = () => {
     <div id="my-bookings-page" style={{ backgroundColor: 'var(--bg-white, #FFFFFF)', minHeight: '80vh', padding: '4rem 2rem' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         
-        <h1 className="title-display" style={{ fontSize: '3.5rem', lineHeight: 1, marginBottom: '2rem', color: '#000', textAlign: 'center' }}>
-          MY<br />ACCOUNT.
+        <h1 className="title-display" style={{ fontSize: '3.5rem', lineHeight: 1, marginBottom: '2rem', color: '#000', textAlign: 'center', textTransform: 'uppercase' }}>
+          WELCOME,<br />{user ? user.name : 'GUEST'}!
         </h1>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '3rem' }}>
@@ -110,7 +112,7 @@ const MyBookings = () => {
                       </div>
                       <div>
                         <p style={{ fontSize: '0.9rem', textTransform: 'uppercase', fontWeight: 800, color: '#666', marginBottom: '0.2rem' }}>Total Price</p>
-                        <p style={{ fontSize: '1.2rem', fontWeight: 800, color: '#D4AF37' }}>${parseFloat(booking.total_price).toFixed(2)}</p>
+                        <p style={{ fontSize: '1.2rem', fontWeight: 800, color: '#D4AF37' }}>₹{parseFloat(booking.total_price).toFixed(2)}</p>
                       </div>
                       {booking.addons && (
                         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingTop: '1rem', borderTop: '2px dashed #EEE' }}>
